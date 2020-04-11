@@ -1,5 +1,0 @@
-<launch>
-	<node pkg="voice_nav" type="voice_nav_node" name="voice_nav" output="screen">
-	<param name="userwords_file" type="string" value="./source/voice_nav/userwords.txt"/>
-	</node>
-</launch>
