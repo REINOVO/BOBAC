@@ -1,0 +1,9 @@
+<launch>
+  <node name="match_demo" pkg="match_demo" type="match_demo_node" output="screen">
+    <param name="first" type="int" value="5"/>
+    <param name="second" type="int" value="4"/>
+    <param name="third" type="int" value="3"/>
+    <param name="fourth" type="int" value="2"/>
+    <param name="fifth" type="int" value="1"/>
+  </node>
+</launch>

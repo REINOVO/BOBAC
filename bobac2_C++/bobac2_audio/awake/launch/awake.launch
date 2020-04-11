@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="awake" type="awake_node" name="awake" output="screen">
+	<param name="awake_word" type="string" value="元宝"/>
+	<param name="userwords_file" type="string" value="./source/awake/userwords.txt"/>
+	</node>
+</launch>

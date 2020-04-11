@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="mode_choose" type="mode_choose_node" name="mode_choose" output="screen">
+	<param name="userwords_file" type="string" value="./source/mode_choose/userwords.txt"/>
+	</node>
+</launch>

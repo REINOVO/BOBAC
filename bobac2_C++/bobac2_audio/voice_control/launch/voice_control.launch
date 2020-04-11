@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="voice_control" type="voice_control_node" name="voice_control" output="screen">
+	<param name="userwords_file" type="string" value="./source/voice_control/userwords.txt"/>
+	</node>
+</launch>

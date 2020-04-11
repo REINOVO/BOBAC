@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<robot name="cylinder_bot">
+    <link name="base_footprint">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.005" radius="0.30"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="foot_to_base" type="fixed">
+        <origin xyz="0 0 0.2325" rpy="0 0 0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
+    <link name="base_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.46" radius="0.30"/>
+            </geometry>
+            <material name="orange">
+                <color rgba="250 0 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="base_to_camera" type="fixed">
+        <origin xyz="0.28 0 0.265" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+    </joint>
+    <link name="camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.04 0.15 0.07"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="base_to_head" type="fixed">
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="head_link"/>
+    </joint>
+    <link name="head_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.12" radius="0.12"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 255 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="base_to_laser" type="fixed">
+        <origin xyz="0.07 0 0.08" rpy="0 0 0"/>
+        <parent link="head_link"/>
+        <child link="laser_rada_Link"/>
+    </joint>
+    <link name="laser_rada_Link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.035"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+    </link>
+</robot>

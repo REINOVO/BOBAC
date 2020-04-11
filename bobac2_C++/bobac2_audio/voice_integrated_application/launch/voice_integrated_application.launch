@@ -1,0 +1,11 @@
+<launch>
+	<include file="$(find audio_collect)/launch/audio_collect.launch"/>
+	<include file="$(find awake)/launch/awake.launch"/>
+	<include file="$(find mode_choose)/launch/mode_choose.launch"/>
+	<include file="$(find voice_control)/launch/voice_control.launch"/>
+	<include file="$(find voice_nav)/launch/voice_nav.launch"/>
+        <include file="$(find ifly_package)/launch/aiui_semantic.launch"/>
+        <include file="$(find speech_synthesis)/launch/speech_synthesis.launch"/>
+	<node pkg="voice_integrated_application" type="voice_integrated_application_node" name="voice_integrated_application" output="screen">
+	</node>
+</launch>

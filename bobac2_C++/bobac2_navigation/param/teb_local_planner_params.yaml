@@ -1,0 +1,117 @@
+TebLocalPlannerROS:
+ odom_topic: odom
+ map_frame: odom  
+
+ # Trajectory
+  
+ teb_autosize: True
+ dt_ref: 0.3
+ dt_hysteresis: 0.1
+ min_samples: 3
+ global_plan_overwrite_orientation: true
+ allow_init_with_backwards_motion: false
+ max_global_plan_lookahead_dist: 3.0
+ global_plan_viapoint_sep: -0.1
+ force_reinit_new_goal_dist: 1.0
+ exact_arc_length: false
+ feasibility_check_no_poses: 5
+ publish_feedback: false
+ shrink_horizon_backup: true
+ shrink_horizon_mi_duration: 10.0
+    
+ # Robot
+         
+ max_vel_x: 0.4
+ max_vel_x_backwards: 0.2
+ max_vel_theta: 0.3
+ acc_lim_x: 0.5
+ acc_lim_theta: 0.5
+ 
+ # the next params only apply to holonomic robot
+ acc_lim_y: 0.5
+ max_vel_y: 0.0
+ 
+ # the next params only apply to carlike robot
+ min_turning_radius: 0.0 # diff-drive robot (can turn on place!)
+ wheelbase: 1.0 # Only vaild if param cmd_instead_rotvel is true
+ cmd_instead_rotvel: false
+
+ #The following parameters are relevant for the footprint model used for optimization
+ footprint_model:
+   type: "circular"
+   radius: 0.2
+   line_start: [-0.3, 0.0]
+   line_end: [0.3, 0.0]
+   front_offset: 0.2
+   rea_offset: 0.2
+   front_radius: 0.2
+   rear_radius: 0.2
+   vertices: [[1, 1], [1, -1], [-1, -1], [-1, 1]]
+   is_footprintf_dynamic: false
+
+ # GoalTolerance
+    
+ xy_goal_tolerance: 0.2
+ yaw_goal_tolerance: 0.03
+ free_goal_vel: False
+    
+ # Obstacles
+    
+ min_obstacle_dist: 0.35 # This value must also include our robot radius, since footprint_model is set to "point".
+ inflation_dist: 0.5
+ include_costmap_obstacles: true
+ costmap_obstacles_behind_robot_dist: 1.0
+ obstacle_poses_affected: 30
+ include_dynamic_obstacles: false
+ legacy_obstacle_association: false
+ obstacle_association_force_inclusion_faction: 1.5
+ obstacle_associatopn_cutoff_factor: 5
+ dynamic_obstacle_inflation_dist: 0.2
+ include_dynamic_obstacles: True
+
+ costmap_converter_plugin: ""
+ costmap_converter_spin_thread: True
+ costmap_converter_rate: 5
+
+ # Optimization
+    
+ no_inner_iterations: 5
+ no_outer_iterations: 4
+ optimization_activate: true
+ optimization_verbose: false
+ penalty_epsilon: 0.1
+ obstacle_cost_exponent: 4
+ weight_max_vel_x: 2.0
+ weight_max_vel_theta: 1.0
+ weight_acc_lim_x: 1.0
+ weight_acc_lim_theta: 1.0
+ weight_kinematics_nh: 1000.0
+ weight_kinematics_forward_drive: 1.0
+ weight_kinematics_turning_radius: 1.0
+ weight_optimaltime: 1 # must be > 0
+ weight_obstacle: 70
+ weight_inflation: 0.1
+ weight_dynamic_obstacle: 10
+ weight_dynamic_obstacle_inflation: 0.2
+ weight_viapoint: 1.0
+ weight_adapt_factor: 2.0
+
+ # Homotopy Class Planner
+
+ enable_homotopy_class_planning: true
+ enable_multithreading: true
+ max_number_classes: 4
+ selection_cost_hysteresis: 1.0
+ selection_obst_cost_scale: 100.0
+ selection_alternative_time_cost: false
+ selection_viapoint_cost_sacle: 1.0
+ 
+ roadmap_graph_no_samples: 15
+ roadmap_graph_no_width: 6
+ h_signature_prescaler: 0.5
+ h_signature_threshold: 0.1
+ obstacle_heading_threshold: 1.0
+ switching_blocking_period: 0.0
+ viapoints_all_candidates: true
+ max_ratio_detours_duration_best_duration: 3.0
+ visualize_hc_graph: false

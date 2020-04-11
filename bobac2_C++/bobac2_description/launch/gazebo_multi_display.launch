@@ -1,0 +1,47 @@
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+
+  <arg name="world_name" value="$(find bobac2_description)/world/room.world"/>
+  <arg name = "robot1_name" value = "robot1"/>
+  <arg name = "robot2_name" value = "robot2"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+  <param name="robot_description" textfile="$(find bobac2_description)/urdf/gazebo_bobac2_description.urdf" />
+  <!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+  <param name="robot_description" textfile="$(find bobac2_description)/urdf/gazebo_bobac2_description.urdf" />
+    <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -y 2 -urdf -model $(arg robot1_name)"
+    output="screen" />
+
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+
+  <param name="robot_description" textfile="$(find bobac2_description)/urdf/gazebo_bobac2_description.urdf" />
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model $(arg robot2_name) "
+    output="screen" />
+
+  </group>
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <param name="rate" value="50"/>	
+    </node>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+      <param name="publish_frequency" type="double" value="50.0" />		  
+    </node>
+  <!--node name = "robot1_tf" pkg = "tf" type = "static_transform_publisher" args = "0 0 0 0 0 0 odom robot1_tf/base_footprint 10"/-->
+  <!--node name = "robot2_tf" pkg = "tf" type = "static_transform_publisher" args = "0 2 0 0 0 0 odom robot2_tf/base_footprint 10"/-->
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find bobac2_description)/multi_robot.rviz" /-->
+</launch>

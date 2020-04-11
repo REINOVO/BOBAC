@@ -1,0 +1,20 @@
+<launch>
+  <!--param name="robot_description" textfile="$(find bobac2_description)/urdf/bobac2_description.urdf" /-->
+
+
+  <group ns = "robot1">
+    <param name = "tf_prefix" value = "robot1_tf"/>
+    <include file = "$(find bobac2_description)/launch/display.launch"/>
+      <!--<arg name = "init_pose" value = "-x 0 -y 1 -z 0"/>
+      <arg name = "robot_name" value = "Robot1"/>-->
+  </group>
+
+  <group ns = "robot2">
+    <param name = "tf_prefix" value = "robot2_tf"/>
+    <include file = "$(find bobac2_description)/launch/display.launch"/>
+  </group> >
+
+  <!--node name = "robot1_tf" pkg = "tf" type = "static_transform_publisher" args = "0 0 0 0 0 0 map robot1_tf/base_footprint 10"/-->
+  <!--node name = "robot2_tf" pkg = "tf" type = "static_transform_publisher" args = "0 2 0 0 0 0 map robot2_tf/base_footprint 10"/-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find bobac2_description)/urdf.rviz" />
+</launch>
